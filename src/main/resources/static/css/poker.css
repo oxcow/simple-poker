@@ -1,0 +1,51 @@
+.card {
+    width: 130px;
+    height: 180px;
+    box-shadow: 0 0.25rem 1rem rgba(48, 188, 66, .3);
+    border-radius: 8px;
+}
+
+.card_self {
+    box-shadow: 0 0.25rem 1rem rgba(48, 188, 66, .9);
+}
+
+.card-body {
+    font-size: 65px;
+}
+
+.ec {
+    font-family: monospace;
+    color: #000;
+}
+
+.ec-100:before {
+    content: "💯";
+}
+
+.ec-zzz:before {
+    content: "💤";
+}
+
+.ec-busts-in-silhouette:before {
+    content: "👥";
+}
+
+.ec-speaking-head:before {
+    content: "🗣";
+}
+
+.ec-footprints:before {
+    content: "👣";
+}
+
+.ec-eyes:before {
+    content: "👀";
+}
+
+.ec_f_lg {
+    font-size: 34px;
+}
+
+.ec_f_md {
+    font-size: 24px;
+}
