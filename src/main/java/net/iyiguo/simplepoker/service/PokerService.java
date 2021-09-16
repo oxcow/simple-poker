@@ -25,7 +25,7 @@ public class PokerService {
     }
 
     public Optional<PokerDto> getPokerById(Long pokerId) {
-        return pokerDao.findById(pokerId).stream().map(PokerDto::from).findFirst();
+        return pokerDao.findById(pokerId).map(PokerDto::from);
     }
 
     public Optional<PokerDto> getPokerByName(String name) {

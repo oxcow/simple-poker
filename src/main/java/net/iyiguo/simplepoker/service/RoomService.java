@@ -37,7 +37,7 @@ public class RoomService {
     }
 
     public Optional<RoomDto> getRoomByNo(Long roomNo) {
-        return roomDao.findById(roomNo).stream().map(RoomDto::from).findFirst();
+        return roomDao.findById(roomNo).map(RoomDto::from);
     }
 
     @Transactional(rollbackFor = Exception.class)
