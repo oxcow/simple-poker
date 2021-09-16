@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <link href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/spectre.css/0.5.9/spectre.min.css" rel="stylesheet">
-  <link href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/spectre.css/0.5.9/spectre-icons.min.css"
-        rel="stylesheet">
-  <link href="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/spectre.css/0.5.9/spectre-exp.min.css" rel="stylesheet">
-  <script src='https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/3.5.1/jquery.slim.min.js'></script>
+  <link href="/css/spectre.min.css" rel="stylesheet">
+  <link href="/css/spectre-icons.min.css" rel="stylesheet">
+  <link href="/css/spectre-exp.min.css" rel="stylesheet">
+  <script src='/js/jquery.slim.min.js'></script>
   <link href='/css/poker.css' rel='stylesheet'>
   <script type="text/javascript" src="/js/poker.js"></script>
   <script type="text/javascript">
