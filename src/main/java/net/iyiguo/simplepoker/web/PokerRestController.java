@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @author leeyee
  * @date 2021/08/08
  */
-@RestController
-@RequestMapping("/api/pokers")
+//@RestController
+//@RequestMapping("/api/pokers")
 public class PokerRestController {
 
     private PokerActionHandler pokerActionHandler;
