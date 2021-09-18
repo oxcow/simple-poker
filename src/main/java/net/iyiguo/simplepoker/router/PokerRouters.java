@@ -1,4 +1,4 @@
-package net.iyiguo.simplepoker.config;
+package net.iyiguo.simplepoker.router;
 
 import net.iyiguo.simplepoker.handler.PokerHandler;
 import org.springframework.context.annotation.Bean;
@@ -11,7 +11,7 @@ import static org.springframework.web.servlet.function.RequestPredicates.accept;
 import static org.springframework.web.servlet.function.RouterFunctions.route;
 
 /**
- * @author William.li
+ * @author leeyee
  * @date 2021/9/16
  */
 @Configuration

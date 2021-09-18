@@ -6,8 +6,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.function.ServerRequest;
 import org.springframework.web.servlet.function.ServerResponse;
 
+import java.util.Optional;
+
 /**
- * @author William.li
+ * @author leeyee
  * @date 2021/9/16
  */
 @Service
@@ -27,7 +29,11 @@ public class PokerHandler {
     public ServerResponse vote(ServerRequest request) throws Exception {
         Long pokerId = Long.valueOf(request.pathVariable("pokerId"));
         Long roomNo = Long.valueOf(request.param("roomNo").orElse("-1"));
-        Integer votes = Integer.valueOf(request.param("vote").get());
+        Integer votes = null;
+        Optional<String> voteStr = request.param("vote");
+        if (voteStr.isPresent()) {
+            votes = Integer.valueOf(voteStr.get());
+        }
         pokerActionHandler.voteAction(pokerId, roomNo, votes);
         return ServerResponse.ok().body(true);
     }

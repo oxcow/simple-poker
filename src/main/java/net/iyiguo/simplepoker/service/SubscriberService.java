@@ -35,6 +35,10 @@ public class SubscriberService {
         this.eventPublisher = eventPublisher;
     }
 
+    public void addSubscriber(PokerEmitter emitter) {
+        this.subscribers.add(emitter);
+    }
+
     public Set<PokerEmitter> getSubscribers(Long roomNo) {
         return subscribers.stream().filter(obj -> obj.getRoomNo().equals(roomNo)).collect(Collectors.toSet());
     }
@@ -79,7 +83,7 @@ public class SubscriberService {
         return true;
     }
 
-    private long getNumOfSubscribers(Long roomNo) {
+    public long getNumOfSubscribers(Long roomNo) {
         return subscribers.stream().filter(obj -> obj.getRoomNo().equals(roomNo)).count();
     }
 

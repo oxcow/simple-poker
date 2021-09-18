@@ -1,5 +1,6 @@
 package net.iyiguo.simplepoker.model;
 
+import org.springframework.web.servlet.function.ServerResponse;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 /**
@@ -11,6 +12,7 @@ public class PokerEmitter {
     private Long pokerId;
     private long lastEventId;
     private SseEmitter emitter;
+    private ServerResponse.SseBuilder sseBuilder;
 
     public PokerEmitter() {
     }
@@ -52,5 +54,13 @@ public class PokerEmitter {
 
     public void setEmitter(SseEmitter emitter) {
         this.emitter = emitter;
+    }
+
+    public ServerResponse.SseBuilder getSseBuilder() {
+        return sseBuilder;
+    }
+
+    public void setSseBuilder(ServerResponse.SseBuilder sseBuilder) {
+        this.sseBuilder = sseBuilder;
     }
 }

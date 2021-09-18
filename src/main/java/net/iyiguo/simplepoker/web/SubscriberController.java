@@ -2,12 +2,10 @@ package net.iyiguo.simplepoker.web;
 
 import net.iyiguo.simplepoker.model.PokerEmitter;
 import net.iyiguo.simplepoker.service.SubscriberService;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
@@ -18,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author leeyee
  * @date 2021/08/08
  */
-@Controller
-@RequestMapping("/api/subscriber")
+//@Controller
+//@RequestMapping("/api/subscriber")
 public class SubscriberController {
 
     private SubscriberService subscriberService;
