@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.function.ServerResponse;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.io.IOException;
@@ -92,15 +93,30 @@ public class SubscriberService {
         Set<PokerEmitter> offlinePokers = Sets.newHashSet();
         subscribers.forEach(subscriber -> {
             SseEmitter emitter = subscriber.getEmitter();
+            ServerResponse.SseBuilder sseBuilder = subscriber.getSseBuilder();
             if (Objects.nonNull(emitter)) {
                 try {
-                    emitter.send(SseEmitter.event().comment("heart"));
+                    emitter.send(SseEmitter.event().comment("Heartbeat"));
+                    LOGGER.info("Heartbeat test...");
                 } catch (IOException e) {
                     LOGGER.info("和Poker#{} 失去连接. 房间Room#{}", subscriber.getPokerId(), subscriber.getRoomNo());
                     emitter.completeWithError(e);
                     offlinePokers.add(subscriber);
                 }
             }
+
+            // DefaultSseBuilder 的实现有缺陷，无法发送单独的 comment event.
+            // 具体可以看DefaultSseBuilder#writeString 和DefaultSseBuilder#writeObject方法。
+            if (Objects.nonNull(sseBuilder)) {
+                try {
+                    sseBuilder.send("Heartbeat");
+                    LOGGER.info("Heartbeat test...");
+                }catch (IOException e){
+                    LOGGER.info("和Poker#{} 失去连接. 房间Room#{}", subscriber.getPokerId(), subscriber.getRoomNo());
+                    offlinePokers.add(subscriber);
+                }
+            }
+
         });
         offlinePokers.forEach(subscriber -> this.unsubscribe(subscriber.getPokerId(), subscriber.getRoomNo()));
     }

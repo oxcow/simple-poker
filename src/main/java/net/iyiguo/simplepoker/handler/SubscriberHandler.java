@@ -11,6 +11,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.function.ServerResponse;
 
+import java.time.Duration;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -58,7 +59,7 @@ public class SubscriberHandler {
             LOGGER.info("Poker#{}进入房间#{}. 当前房间人数为:{}", pokerId, roomNo, subscriberService.getNumOfSubscribers(roomNo));
 
             eventPublisher.publishEvent(new EntityCreatedEvent<>(new PokerEvent(roomNo, pokerId, PokerActionEnum.ONLINE)));
-        });
+        }, Duration.ofMillis(-1L));
     }
 
     public ServerResponse unsubscribe(Long pokerId, Long roomNo) {
