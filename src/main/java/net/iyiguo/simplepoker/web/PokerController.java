@@ -23,8 +23,8 @@ import java.util.Optional;
 @RequestMapping("/pokers")
 public class PokerController {
 
-    private PokerService pokerService;
-    private RoomPokersService roomPokersService;
+    private final PokerService pokerService;
+    private final RoomPokersService roomPokersService;
 
     public PokerController(PokerService pokerService, RoomPokersService roomPokersService) {
         this.pokerService = pokerService;
@@ -39,7 +39,7 @@ public class PokerController {
     }
 
     @PostMapping("/room/{roomNo}")
-    public String joinRoom(@PathVariable("roomNo") Long roomNo, @RequestParam("name") String name, Model model) {
+    public String joinRoom(@PathVariable("roomNo") Long roomNo, @RequestParam("name") String name) {
         Optional<PokerDto> pokerOpt = pokerService.getPokerByName(name);
         if (pokerOpt.isPresent()) {
             return String.format("redirect:/pokers/%d/room/%d", pokerOpt.get().getId(), roomNo);

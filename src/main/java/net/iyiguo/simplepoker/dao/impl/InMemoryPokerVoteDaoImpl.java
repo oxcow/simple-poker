@@ -10,10 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * @author leeyee
@@ -41,11 +39,8 @@ public class InMemoryPokerVoteDaoImpl implements PokerVoteDao {
     public List<PokerVote> findByRoomId(Long roomId) {
         List<PokerVote> pokerVotes = Lists.newArrayList();
         Map<Long, Integer> pokerVoteCols = pokerVotesCache.row(roomId);
-
-        if (Objects.nonNull(pokerVoteCols)) {
-            for (Map.Entry<Long, Integer> pv : pokerVoteCols.entrySet()) {
-                pokerVotes.add(new PokerVote(roomId, pv.getKey(), pv.getValue()));
-            }
+        for (Map.Entry<Long, Integer> pv : pokerVoteCols.entrySet()) {
+            pokerVotes.add(new PokerVote(roomId, pv.getKey(), pv.getValue()));
         }
         return pokerVotes;
     }
@@ -53,11 +48,8 @@ public class InMemoryPokerVoteDaoImpl implements PokerVoteDao {
     @Override
     public void delByRoomId(Long roomId) {
         Map<Long, Integer> pokerVoteCols = Maps.newHashMap(pokerVotesCache.row(roomId));
-        Iterator<Long> pokerIdIter = pokerVoteCols.keySet().iterator();
-        if (Objects.nonNull(pokerVoteCols)) {
-            while (pokerIdIter.hasNext()) {
-                pokerVotesCache.remove(roomId, pokerIdIter.next());
-            }
+        for (Long aLong : pokerVoteCols.keySet()) {
+            pokerVotesCache.remove(roomId, aLong);
         }
     }
 

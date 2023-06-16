@@ -22,9 +22,9 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/rooms")
 public class RoomController {
-    private RoomService roomService;
-    private PokerService pokerService;
-    private RoomPokersService roomPokersService;
+    private final RoomService roomService;
+    private final PokerService pokerService;
+    private final RoomPokersService roomPokersService;
 
     public RoomController(RoomService roomService, PokerService pokerService, RoomPokersService roomPokersService) {
         this.roomService = roomService;

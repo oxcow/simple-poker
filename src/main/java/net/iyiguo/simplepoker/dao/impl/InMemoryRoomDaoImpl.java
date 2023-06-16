@@ -26,7 +26,7 @@ public class InMemoryRoomDaoImpl implements RoomDao {
     private Map<Long, Room> roomsCache;
     private AtomicLong idGenerator;
 
-    private PokerCacheProperties pokerCacheProperties;
+    private final PokerCacheProperties pokerCacheProperties;
 
     public InMemoryRoomDaoImpl(PokerCacheProperties pokerCacheProperties) {
         this.pokerCacheProperties = pokerCacheProperties;
@@ -36,7 +36,7 @@ public class InMemoryRoomDaoImpl implements RoomDao {
     public void init() {
         idGenerator = new AtomicLong(0L);
         roomsCache = Maps.newConcurrentMap();
-        pokerCacheProperties.getRooms().forEach(room -> save(room));
+        this.saveAll(pokerCacheProperties.getRooms());
     }
 
     @PreDestroy
@@ -89,7 +89,7 @@ public class InMemoryRoomDaoImpl implements RoomDao {
 
     @Override
     public void deleteAllById(Iterable<? extends Long> ids) {
-        ids.forEach(id -> deleteById(id));
+        ids.forEach(this::deleteById);
     }
 
     @Override

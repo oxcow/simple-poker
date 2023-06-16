@@ -24,9 +24,9 @@ public class SubscriberHandler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SubscriberHandler.class);
 
-    private SubscriberService subscriberService;
+    private final SubscriberService subscriberService;
 
-    private ApplicationEventPublisher eventPublisher;
+    private final ApplicationEventPublisher eventPublisher;
 
     public SubscriberHandler(SubscriberService subscriberService, ApplicationEventPublisher eventPublisher) {
         this.subscriberService = subscriberService;
@@ -37,10 +37,10 @@ public class SubscriberHandler {
     public ServerResponse subscriber(Long pokerId, Long roomNo, String lastEventIdStr) {
         return ServerResponse.sse(sse -> {
 
-            Long lastEventId = 0L;
+            long lastEventId = 0L;
 
             if (Objects.nonNull(lastEventIdStr)) {
-                lastEventId = Long.valueOf(lastEventIdStr);
+                lastEventId = Long.parseLong(lastEventIdStr);
             }
 
             Optional<PokerEmitter> pokerEmitter = subscriberService.getSubscribers(roomNo, pokerId);

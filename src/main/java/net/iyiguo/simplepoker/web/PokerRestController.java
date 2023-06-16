@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 //@RequestMapping("/api/pokers")
 public class PokerRestController {
 
-    private PokerActionHandler pokerActionHandler;
+    private final PokerActionHandler pokerActionHandler;
 
     public PokerRestController(PokerActionHandler pokerActionHandler) {
         this.pokerActionHandler = pokerActionHandler;

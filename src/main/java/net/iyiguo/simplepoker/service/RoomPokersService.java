@@ -23,9 +23,9 @@ import java.util.stream.Collectors;
 public class RoomPokersService {
     private SetMultimap<Long, PokerDto> roomPokersCache = HashMultimap.create();
 
-    private RoomService roomService;
-    private PokerService pokerService;
-    private PokerVotesService pokerVotesService;
+    private final RoomService roomService;
+    private final PokerService pokerService;
+    private final PokerVotesService pokerVotesService;
 
     public RoomPokersService(RoomService roomService, PokerService pokerService, PokerVotesService pokerVotesService) {
         this.roomService = roomService;
@@ -34,8 +34,7 @@ public class RoomPokersService {
     }
 
     public Set<PokerDto> getPokers(Long roomNo) {
-        Set<PokerDto> pokers = roomPokersCache.get(roomNo);
-        return pokers;
+        return roomPokersCache.get(roomNo);
     }
 
     public boolean isInRoom(Long pokerId, Long roomNo) {
@@ -80,7 +79,6 @@ public class RoomPokersService {
         pokers.stream()
                 .filter(obj -> obj.getId().equals(pokerId))
                 .collect(Collectors.toSet())
-                .stream()
                 .forEach(pokers::remove);
         return true;
     }

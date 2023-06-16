@@ -15,8 +15,8 @@ import java.util.Objects;
 @Service
 public class PokerActionHandler {
 
-    private PokerVotesService pokerVotesService;
-    private ApplicationEventPublisher eventPublisher;
+    private final PokerVotesService pokerVotesService;
+    private final ApplicationEventPublisher eventPublisher;
 
     public PokerActionHandler(PokerVotesService pokerVotesService, ApplicationEventPublisher eventPublisher) {
         this.pokerVotesService = pokerVotesService;

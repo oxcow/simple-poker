@@ -26,7 +26,7 @@ public class InMemoryPokerDaoImpl implements PokerDao {
     private Map<Long, Poker> pokersCache;
     private AtomicLong idGenerator;
 
-    private PokerCacheProperties pokerCacheProperties;
+    private final PokerCacheProperties pokerCacheProperties;
 
     public InMemoryPokerDaoImpl(PokerCacheProperties pokerCacheProperties) {
         this.pokerCacheProperties = pokerCacheProperties;
@@ -36,7 +36,7 @@ public class InMemoryPokerDaoImpl implements PokerDao {
     public void init() {
         idGenerator = new AtomicLong(0L);
         pokersCache = Maps.newConcurrentMap();
-        pokerCacheProperties.getPokers().forEach(poker -> save(poker));
+        this.saveAll(pokerCacheProperties.getPokers());
     }
 
     @PreDestroy
@@ -47,7 +47,7 @@ public class InMemoryPokerDaoImpl implements PokerDao {
 
     @Override
     public <S extends Poker> Iterable<S> saveAll(Iterable<S> entities) {
-        entities.forEach(entity -> this.save(entity));
+        entities.forEach(this::save);
         return entities;
     }
 

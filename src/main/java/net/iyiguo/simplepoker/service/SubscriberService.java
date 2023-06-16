@@ -28,9 +28,9 @@ public class SubscriberService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SubscriberService.class);
 
-    private Set<PokerEmitter> subscribers = Sets.newConcurrentHashSet();
+    private final Set<PokerEmitter> subscribers = Sets.newConcurrentHashSet();
 
-    private ApplicationEventPublisher eventPublisher;
+    private final ApplicationEventPublisher eventPublisher;
 
     public SubscriberService(ApplicationEventPublisher eventPublisher) {
         this.eventPublisher = eventPublisher;

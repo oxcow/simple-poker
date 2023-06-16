@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 //@RequestMapping("/api/subscriber")
 public class SubscriberController {
 
-    private SubscriberService subscriberService;
+    private final SubscriberService subscriberService;
 
     public SubscriberController(SubscriberService subscriberService) {
         this.subscriberService = subscriberService;
